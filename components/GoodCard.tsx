@@ -70,7 +70,7 @@ export default function GoodCard({ product }: Props) {
           </Transition.Child>
 
           <div className="fixed inset-0 overflow-y-auto">
-            <div className="flex items-center justify-center p-0 sm:p-4 text-center">
+            <div className="flex min-h-full items-center justify-center p-0 md:p-4 text-center">
               <Transition.Child
                 as={Fragment}
                 enter="ease-out duration-300"
@@ -80,24 +80,24 @@ export default function GoodCard({ product }: Props) {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="max-w-screen-md w-full min-h-screen sm:min-h-0 transform rounded-none sm:rounded-3xl bg-white p-6 text-left transition-all relative overflow-hidden">
+                <Dialog.Panel className="max-w-screen-md w-full h-screen sm:h-fit transform rounded-none sm:rounded-3xl bg-white p-3 sm:p-6 text-left transition-all relative overflow-hidden">
                   <Image
                     onClick={closeModal}
-                    className="absolute top-5 right-5 cursor-pointer"
+                    className="absolute top-5 right-5 cursor-pointer z-30"
                     src="/closeBtn.svg"
                     alt="Close"
                     priority
                     width={20}
                     height={20}
                   />
-                  <div className="flex items-center flex-col sm:flex-row">
+                  <div className="flex items-center gap-0 sm:gap-6 flex-col sm:flex-row">
                     <img
-                      className="w-[300px] md:w-[400px] rounded-xl object-cover"
+                      className="w-[300px] md:w-[400px] rounded-xl object-cover sticky top-0 sm:relative"
                       src={product.images[0]}
                       alt={product.title}
                     />
                     {/* Description side */}
-                    <div className="flex flex-col w-full md:w-1/2 ">
+                    <div className="flex flex-col w-full md:w-1/2 h-[50vh] overflow-auto">
                       <div className="mt-2 pr-4 sm:my-8 flex flex-col overflow-y-auto scrollbar-thin scrollbar-track-transparent scrollbar-thumb-gray-200">
                         <Dialog.Title
                           as="h3"
@@ -115,47 +115,52 @@ export default function GoodCard({ product }: Props) {
                         </p>
 
                         {/* Filter 1 */}
-                        <div className="filterWrapper">
-                          <div className="w-1/3 h-8 bg-white shadow-[0_3px_12px_-7px_rgba(0,0,0,0.7)] py-1 px-6 rounded-2xl transition-all duration-500" />
-                          <div
-                            className={`absolute top-1/2 left-0 -translate-y-1/2 w-full flex justify-around text-gray-500 py-1 z-10 transition-all duration-500 select-none`}
-                          >
-                            <span className="cursor-pointer hover:text-black transition-all">
-                              {product.size?.s1}
-                            </span>
-                            <span className="cursor-pointer hover:text-black transition-all">
-                              {product.size?.s2}
-                            </span>
-                            <span className="cursor-pointer hover:text-black transition-all">
-                              {product.size?.s3}
-                            </span>
+                        {product.category === "pizza" && (
+                          <div className="filterWrapper">
+                            <div className="w-1/3 h-8 bg-white shadow-[0_3px_12px_-7px_rgba(0,0,0,0.7)] py-1 px-6 rounded-2xl transition-all duration-500" />
+                            <div
+                              className={`absolute top-1/2 left-0 -translate-y-1/2 w-full flex justify-around text-gray-500 py-1 z-10 transition-all duration-500 select-none`}
+                            >
+                              <span className="cursor-pointer hover:text-black transition-all">
+                                {product.size?.s1}
+                              </span>
+                              <span className="cursor-pointer hover:text-black transition-all">
+                                {product.size?.s2}
+                              </span>
+                              <span className="cursor-pointer hover:text-black transition-all">
+                                {product.size?.s3}
+                              </span>
+                            </div>
                           </div>
-                        </div>
+                        )}
 
                         {/* Filter 2 */}
-                        <div className="filterWrapper">
-                          <div className="w-1/2 h-8 bg-white shadow-[0_3px_12px_-7px_rgba(0,0,0,0.7)] py-1 px-6 rounded-2xl transition-all duration-500" />
-                          <div
-                            className={`absolute top-1/2 left-0 -translate-y-1/2 w-full flex justify-around text-gray-500 py-1 z-10 transition-all duration-500 select-none`}
-                          >
-                            <span className="cursor-pointer hover:text-black transition-all">
-                              {product.doughThickness?.think}
-                            </span>
-                            <span className="cursor-pointer hover:text-black transition-all">
-                              {product.doughThickness?.traditional}
-                            </span>
+                        {product.category === "pizza" && (
+                          <div className="filterWrapper">
+                            <div className="w-1/2 h-8 bg-white shadow-[0_3px_12px_-7px_rgba(0,0,0,0.7)] py-1 px-6 rounded-2xl transition-all duration-500" />
+                            <div
+                              className={`absolute top-1/2 left-0 -translate-y-1/2 w-full flex justify-around text-gray-500 py-1 z-10 transition-all duration-500 select-none`}
+                            >
+                              <span className="cursor-pointer hover:text-black transition-all">
+                                {product.doughThickness?.think}
+                              </span>
+                              <span className="cursor-pointer hover:text-black transition-all">
+                                {product.doughThickness?.traditional}
+                              </span>
+                            </div>
                           </div>
-                        </div>
+                        )}
+                        {product.category === "pizza" && (
+                          <h2 className="mt-4 mb-2 text-xl font-medium text-black">
+                            Додатково замовити
+                          </h2>
+                        )}
 
-                        <h2 className="mt-4 mb-2 text-xl font-medium text-black">
-                          Додатково замовити
-                        </h2>
-
-                        <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+                        <div className="grid grid-cols-2 md:grid-cols-3 gap-2 py-2">
                           {product.additionalGoods?.map((additional) => (
                             <div
                               key={additional.id}
-                              className="p-2 shadow-[0_4px_22px_-6px_rgba(0,0,0,0.15)] rounded-xl bg-white"
+                              className="p-2 shadow-[0_7px_7px_-5px_rgba(0,0,0,0.15)] rounded-xl bg-white border border-gray-200"
                             >
                               <Image
                                 className="rounded-xl mb-2"
@@ -176,7 +181,7 @@ export default function GoodCard({ product }: Props) {
                       </div>
                       <button
                         type="button"
-                        className="mt-4 inline-flex justify-center rounded-full border border-transparent bg-orange-500 px-8 py-3 text-base font-normal text-white hover:bg-orange-400 active:bg-orange-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 whitespace-nowrap"
+                        className="w-full mt-2 inline-flex justify-center rounded-full border border-transparent bg-orange-500 px-8 py-3 text-base font-normal text-white hover:bg-orange-400 active:bg-orange-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 whitespace-nowrap"
                         onClick={closeModal}
                       >
                         Додати в кошик за {product.price} грн
