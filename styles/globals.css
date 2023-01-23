@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .sectionTitle {
+    @apply pt-24 pb-12 tracking-[20px] uppercase text-gray-400 text-2xl text-center;
+  }
+  .heroButton {
+    @apply px-6 py-2 border border-transparent rounded-full uppercase text-sm tracking-widest text-gray-400 transition-all hover:border-[#5ED3F3]/40 hover:text-[#5ED3F3]/40;
+  }
+  .contactInput {
+    @apply w-full outline-none bg-slate-400/10 rounded-md border-b-2 px-6 py-4 border-[#242424] text-gray-400 placeholder-gray-500 transition-all focus:border-[#5ED3F3]/40 focus:text-[#5ED3F3]/40 hover:border-[#5ED3F3]/40;
+  }
+  .activeItem {
+    @apply text-[#FF6E00];
+  }
+  .filterWrapper {
+    @apply mt-2 flex w-full bg-gray-200 text-xs font-semibold p-[2px] rounded-2xl relative;
+  }
+}
+body {
+  -webkit-tap-highlight-color: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+}
