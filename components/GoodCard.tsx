@@ -66,22 +66,49 @@ export default function GoodCard({ product }: Props) {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <div className="fixed inset-0 bg-black bg-opacity-75" />
+            <div
+              onClick={closeModal}
+              className="fixed inset-0 bg-black bg-opacity-75"
+            />
           </Transition.Child>
 
-          <div className="fixed inset-0 overflow-y-auto">
-            <div className="flex min-h-full items-center justify-center p-0 md:p-4 text-center">
-              <Transition.Child
-                as={Fragment}
-                enter="ease-out duration-300"
-                enterFrom="opacity-0 scale-95"
-                enterTo="opacity-100 scale-100"
-                leave="ease-in duration-200"
-                leaveFrom="opacity-100 scale-100"
-                leaveTo="opacity-0 scale-95"
-              >
-                <Dialog.Panel className="max-w-screen-md w-full h-screen sm:h-fit transform rounded-none sm:rounded-3xl bg-white p-3 sm:p-6 text-left transition-all relative overflow-hidden">
-                  <Image
+          <div className="fixed inset-0 overflow-y-auto flex min-h-full items-center justify-center p-0 md:p-4 text-center">
+            <Transition.Child
+              as={Fragment}
+              enter="ease-out duration-300"
+              enterFrom="opacity-0 scale-95"
+              enterTo="opacity-100 scale-100"
+              leave="ease-in duration-200"
+              leaveFrom="opacity-100 scale-100"
+              leaveTo="opacity-0 scale-95"
+            >
+              <Dialog.Panel className="bg-white p-4 max-w-screen-lg w-full h-screen md:h-auto transform rounded-none md:rounded-3xl">
+                <Image
+                  onClick={closeModal}
+                  className="absolute top-5 right-5 cursor-pointer z-30"
+                  src="/closeBtn.svg"
+                  alt="Close"
+                  priority
+                  width={20}
+                  height={20}
+                />
+                <div className="flex flex-col md:flex-row gap-3">
+                  <div className="bg-slate-200 p-2 md:w-1/2"></div>
+                  <div className="bg-slate-400 p-2 md:w-1/2">
+                    <h3 className="text-2xl font-medium leading-6 text-black">
+                      {product.title}
+                    </h3>
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  className="mt-4 rounded-2xl border border-transparent bg-orange-500 px-8 py-3 text-base font-normal text-white hover:bg-orange-400 active:bg-orange-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 whitespace-nowrap"
+                  onClick={closeModal}
+                >
+                  Додати в кошик за {product.price} грн
+                </button>
+              </Dialog.Panel>
+              {/* <Image
                     onClick={closeModal}
                     className="absolute top-5 right-5 cursor-pointer z-30"
                     src="/closeBtn.svg"
@@ -90,14 +117,14 @@ export default function GoodCard({ product }: Props) {
                     width={20}
                     height={20}
                   />
-                  <div className="flex items-center gap-0 sm:gap-6 flex-col sm:flex-row">
+                  <div className="flex h-screen sm:h-auto md:pb-6 sm:pb-0 gap-0 sm:gap-6 flex-col md:flex-row">
                     <img
-                      className="w-[300px] md:w-[400px] rounded-xl object-cover sticky top-0 sm:relative"
+                      className="block text-center rounded-xl object-cover sticky top-0 sm:relative"
                       src={product.images[0]}
                       alt={product.title}
                     />
-                    {/* Description side */}
-                    <div className="flex flex-col w-full md:w-1/2 h-[50vh] overflow-auto">
+
+                    <div className="w-full md:w-1/2 bg-white flex flex-col max-h-[65vh] overflow-auto flex-grow">
                       <div className="mt-2 pr-4 sm:my-8 flex flex-col overflow-y-auto scrollbar-thin scrollbar-track-transparent scrollbar-thumb-gray-200">
                         <Dialog.Title
                           as="h3"
@@ -114,7 +141,6 @@ export default function GoodCard({ product }: Props) {
                           {product.description}
                         </p>
 
-                        {/* Filter 1 */}
                         {product.category === "pizza" && (
                           <div className="filterWrapper">
                             <div className="w-1/3 h-8 bg-white shadow-[0_3px_12px_-7px_rgba(0,0,0,0.7)] py-1 px-6 rounded-2xl transition-all duration-500" />
@@ -134,7 +160,6 @@ export default function GoodCard({ product }: Props) {
                           </div>
                         )}
 
-                        {/* Filter 2 */}
                         {product.category === "pizza" && (
                           <div className="filterWrapper">
                             <div className="w-1/2 h-8 bg-white shadow-[0_3px_12px_-7px_rgba(0,0,0,0.7)] py-1 px-6 rounded-2xl transition-all duration-500" />
@@ -156,7 +181,7 @@ export default function GoodCard({ product }: Props) {
                           </h2>
                         )}
 
-                        <div className="grid grid-cols-2 md:grid-cols-3 gap-2 py-2">
+                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 py-2">
                           {product.additionalGoods?.map((additional) => (
                             <div
                               key={additional.id}
@@ -179,18 +204,24 @@ export default function GoodCard({ product }: Props) {
                           ))}
                         </div>
                       </div>
-                      <button
-                        type="button"
-                        className="w-full mt-2 inline-flex justify-center rounded-full border border-transparent bg-orange-500 px-8 py-3 text-base font-normal text-white hover:bg-orange-400 active:bg-orange-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 whitespace-nowrap"
-                        onClick={closeModal}
-                      >
-                        Додати в кошик за {product.price} грн
-                      </button>
                     </div>
+                    <button
+                      type="button"
+                      className="sm:hidden w-full my-2 inline-flex justify-center rounded-full border border-transparent bg-orange-500 px-8 py-3 text-base font-normal text-white hover:bg-orange-400 active:bg-orange-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 whitespace-nowrap"
+                      onClick={closeModal}
+                    >
+                      Додати в кошик за {product.price} грн
+                    </button>
                   </div>
-                </Dialog.Panel>
-              </Transition.Child>
-            </div>
+                  <button
+                    type="button"
+                    className="hidden sm:block w-full mt-4 justify-center rounded-full border border-transparent bg-orange-500 px-8 py-3 text-base font-normal text-white hover:bg-orange-400 active:bg-orange-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 whitespace-nowrap"
+                    onClick={closeModal}
+                  >
+                    Додати в кошик за {product.price} грн
+                  </button>
+                </Dialog.Panel> */}
+            </Transition.Child>
           </div>
         </Dialog>
       </Transition>

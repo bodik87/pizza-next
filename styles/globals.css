@@ -26,3 +26,7 @@ body {
 *::-webkit-scrollbar-thumb {
   border-radius: 4px;
 }
+
+.productDescription {
+  height: -webkit-fill-available;
+}
