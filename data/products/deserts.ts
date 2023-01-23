@@ -1,6 +1,7 @@
 export const deserts = [
   {
     id: "ds_1",
+    category: "deserts",
     title: "Сметанник",
     description:
       "Слой сметанного ванильного мусса и слой сметанного мусса с какао",
@@ -10,6 +11,7 @@ export const deserts = [
   },
   {
     id: "ds_2",
+    category: "deserts",
     title: "Десерт 2",
     description: "Десерт",
     weight: 0.5,

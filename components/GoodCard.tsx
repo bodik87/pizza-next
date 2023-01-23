@@ -54,7 +54,7 @@ export default function GoodCard({ product }: Props) {
   }
 
   return (
-    <article className="flex flex-col mb-8">
+    <article className="flex flex-col mb-8 ">
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={closeModal}>
           <Transition.Child
@@ -72,7 +72,7 @@ export default function GoodCard({ product }: Props) {
             />
           </Transition.Child>
 
-          <div className="fixed inset-0 overflow-y-auto flex min-h-full items-center justify-center p-0 md:p-4 text-center">
+          <div className="fixed inset-0 overflow-y-auto flex min-h-full items-center justify-center p-0 md:p-4 text-center ">
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
@@ -82,7 +82,7 @@ export default function GoodCard({ product }: Props) {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="flex w-screen sm:max-w-5xl h-screen md:h-[600px] bg-white transform rounded-none md:rounded-3xl overflow-hidden">
+              <Dialog.Panel className="flex w-screen sm:max-w-5xl h-screen md:h-[600px] bg-white transform rounded-none md:rounded-3xl overflow-hidden ">
                 <Image
                   onClick={closeModal}
                   className="absolute top-5 right-5 opacity-75 hover:opacity-100 transition-all cursor-pointer z-30"
